@@ -219,14 +219,16 @@
     width: 67vw;
   }
   #edit {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.2rem;
+    width: 1.2rem;
     right: 3rem;
+    font-size: 0.8rem;
   }
 
   #del {
     height: 1.2rem;
     width: 1.2rem;
+    font-size: 0.8rem;
   }
 
   #add {
