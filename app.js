@@ -68,7 +68,7 @@ const bindHandler = () => {
 }
 
 const addButtonHandler = (e) => {
-    todoInput.value
+    todoInput.value || e.key === 'Enter'
     ? createTodoItem()
     : errorThrowHandler()
 }
