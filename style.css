@@ -225,6 +225,19 @@
     font-size: 0.8rem;
   }
 
+  #save {
+    background-color: rgb(128, 206, 39);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    right: 3.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
   #del {
     height: 1.2rem;
     width: 1.2rem;
