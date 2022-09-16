@@ -216,7 +216,7 @@
 
 @media (max-width: 1100px) {
   .list-container {
-    width: 55vw;
+    width: 67vw;
   }
   #edit {
     height: 1.5rem;
@@ -225,9 +225,18 @@
   }
 
   #del {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.2rem;
+    width: 1.2rem;
   }
+
+  #add {
+    font-size: 1.3rem;
+  }
+
+  #heading {
+    font-size: 1.5rem;
+  }
+
   .todo-item-text {
     font-weight: 600;
     font-size: 0.8rem;
@@ -240,23 +249,24 @@
 
   #todo-item {
     height: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
   }
   #edit-input {
     width: 7rem;
     height: 0.2rem;
     padding: 0.8rem;
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
   #save {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.2rem;
+    width: 1.2rem;
     right: 3rem;
   }
 
   #todo-input {
     font-size: 1rem;
-    width: 60vw;
+    width: 70vw;
+    height: 9vh;
   }
 }
 
