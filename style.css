@@ -143,6 +143,7 @@
     width: 2rem;
     position: absolute;
     right: 3.5rem;
+    font-size: 1.1rem;
 }
 
 #edit:hover {
@@ -161,6 +162,7 @@
     position: absolute;
     right: 3.5rem;
     font-weight: 600;
+    font-size: 1.1rem;
 }
 
 #save:hover {
