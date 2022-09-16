@@ -17,12 +17,17 @@ const todoEdit = document.createElement('button')
 todoEdit.innerText = 'E'
 todoEdit.setAttribute('id', 'edit')
 
+const editInput = document.createElement('input')
+editInput.setAttribute('id', 'edit-input-none')
+editInput.setAttribute('type', 'text')
+
 const todoSave = document.createElement('button')
 todoSave.innerText = 'S'
 todoSave.setAttribute('id', 'save-none')
 
 const todoText = document.createElement('span')
 todoText.setAttribute('class', 'todo-item-text')
+
 planCount.innerText = 'Plans For Today: 0'
 
 //!Handler Functions
@@ -32,6 +37,7 @@ const createTodoItem = () => {
     console.log(todoList.parentNode)
     todoList.appendChild(todoItem)
     todoItem.appendChild(todoText)
+    todoItem.appendChild(editInput)
     todoItem.appendChild(todoSave)
     todoItem.appendChild(todoEdit)
     todoItem.appendChild(todoRemove)
@@ -55,6 +61,10 @@ const bindHandler = () => {
     saveButton.forEach((save) => {
         save.addEventListener('click', saveButtonHandler)
     })
+    const isEditable = document.querySelectorAll('#edit-input-none')
+    isEditable.forEach((editable) => {
+        editable.addEventListener('keydown', textChange)
+    })
 }
 
 const addButtonHandler = (e) => {
@@ -65,11 +75,24 @@ const addButtonHandler = (e) => {
 
 const editButtonHandler = (e) => {
     e.target.previousSibling.setAttribute('id', 'save')
-    e.target.setAttribute('id', 'edit-none')
+    e.target.setAttribute('id', 'el-none')
+    e.target.parentNode.firstChild.setAttribute('id','el-none')
+    e.target.previousSibling.previousSibling.setAttribute('id','edit-input')
+    document.querySelector('#edit-input').value = todoText.innerText
+}
+
+const textChange = () => {
+    let newValue = document.querySelector('#edit-input').value.toUpperCase()
+    todoText.innerText = newValue
 }
 
 const saveButtonHandler = (e) => {
+    textChange()
+    e.target.parentNode.firstChild.innerText = todoText.innerText
+    e.target.parentNode.firstChild.setAttribute('id', 'el-none')
     e.target.setAttribute('id', 'save-none')
+    e.target.previousSibling.previousSibling.setAttribute('id','todo-item-text')
+    e.target.parentNode.firstChild.nextSibling.setAttribute('id','save-none')
     e.target.nextSibling.setAttribute('id', 'edit')
 }
 
@@ -80,7 +103,7 @@ const enterButtonHandler = (e) => {
 }
 
 const removeButtonHandler = (e) => {
-    e.target.previousSibling.previousSibling.classList.toggle('text-overline')
+    e.target.parentNode.firstChild.classList.toggle('text-overline')
     setTimeout(() => {
         e.target.parentNode.remove()
         setListContainer()
@@ -109,11 +132,3 @@ const setPlanCount = () => {
 //Event Listeners
 addButton.addEventListener('click', addButtonHandler)
 document.addEventListener('keydown', enterButtonHandler)
-
-
-
-//Todo Item Pattern
- /* <li id="todo-item">
-    <input type="checkbox" name="del" id="del">
-    <span id="todo-item-text">Hello</span>
-    </li> */

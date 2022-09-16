@@ -104,6 +104,11 @@
    font-weight: 600;
 }
 
+.todo-updated-text {
+    color: rgb(66, 24, 94);
+    font-weight: 600;
+}
+
 .text-overline {
     text-decoration: line-through;
     color: rgb(174, 121, 207);
@@ -146,10 +151,6 @@
     transition: 400ms ease-in;
 }
 
-#edit-none{
-    display: none;
-}
-
 #save{
     background-color: rgb(128, 206, 39);
     color: #fff;
@@ -168,8 +169,28 @@
     transition: 400ms ease-in;
 }
 
+#el-none{
+    display: none;
+}
+
 #save-none{
     display: none;
+}
+
+#edit-input-none {
+    display: none;
+}
+
+#edit-input{
+    background-color: rgb(174, 121, 207);
+    height: 2rem;
+    width: 15rem;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border-radius: 0.2rem;
+    padding: 1rem;
 }
 
 #add {
@@ -188,4 +209,51 @@
     border: 1px solid rgb(66, 24, 94);
     cursor: pointer;
     transition: 400ms ease-in;
+}
+
+@media (max-width: 1100px) {
+    .list-container{
+        width:55vw;
+    }
+    #edit{
+        height: 1.5rem;
+        width: 1.5rem;
+        right: 3rem;
+    }
+
+    #del{
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    .todo-item-text {
+        font-weight: 600;
+        font-size: 0.8rem;
+     }
+
+     .todo-updated-text {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+     
+     #todo-item {
+        height: 1rem;
+        padding: 1rem;
+     }
+     #edit-input{
+        width: 7rem;
+        height: 0.2rem;
+        padding: 0.8rem;
+        font-size: 1rem;
+     }
+     #save{
+        height: 1.5rem;
+        width: 1.5rem;
+        right: 3rem;
+    }
+
+    #todo-input {
+        font-size: 1rem;
+        width: 60vw;
+    }
+    
 }
