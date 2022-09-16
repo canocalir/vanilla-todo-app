@@ -12,6 +12,15 @@ todoItem.setAttribute('id', 'todo-item')
 const todoRemove = document.createElement('button')
 todoRemove.innerText = 'X'
 todoRemove.setAttribute('id', 'del')
+
+const todoEdit = document.createElement('button')
+todoEdit.innerText = 'E'
+todoEdit.setAttribute('id', 'edit')
+
+const todoSave = document.createElement('button')
+todoSave.innerText = 'S'
+todoSave.setAttribute('id', 'save-none')
+
 const todoText = document.createElement('span')
 todoText.setAttribute('class', 'todo-item-text')
 planCount.innerText = 'Plans For Today: 0'
@@ -23,6 +32,8 @@ const createTodoItem = () => {
     console.log(todoList.parentNode)
     todoList.appendChild(todoItem)
     todoItem.appendChild(todoText)
+    todoItem.appendChild(todoSave)
+    todoItem.appendChild(todoEdit)
     todoItem.appendChild(todoRemove)
     todoText.innerText = todoInput.value.toUpperCase()
     setPlanCount()
@@ -36,12 +47,30 @@ const bindHandler = () => {
     rmButton.forEach((del) => {
         del.addEventListener('click', removeButtonHandler)
     })
+    const editButton = document.querySelectorAll('#edit')
+    editButton.forEach((edit) => {
+        edit.addEventListener('click', editButtonHandler)
+    })
+    const saveButton = document.querySelectorAll('#save-none')
+    saveButton.forEach((save) => {
+        save.addEventListener('click', saveButtonHandler)
+    })
 }
 
 const addButtonHandler = (e) => {
     todoInput.value || e.key === 'Enter'
     ? createTodoItem()
     : errorThrowHandler()
+}
+
+const editButtonHandler = (e) => {
+    e.target.previousSibling.setAttribute('id', 'save')
+    e.target.setAttribute('id', 'edit-none')
+}
+
+const saveButtonHandler = (e) => {
+    e.target.setAttribute('id', 'save-none')
+    e.target.nextSibling.setAttribute('id', 'edit')
 }
 
 const enterButtonHandler = (e) => {
@@ -51,7 +80,7 @@ const enterButtonHandler = (e) => {
 }
 
 const removeButtonHandler = (e) => {
-    e.target.previousSibling.classList.toggle('text-overline')
+    e.target.previousSibling.previousSibling.classList.toggle('text-overline')
     setTimeout(() => {
         e.target.parentNode.remove()
         setListContainer()

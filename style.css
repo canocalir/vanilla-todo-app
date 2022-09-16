@@ -36,7 +36,7 @@
 }
 
 .list-container {
-    min-width: 25vw;
+    width: 25vw;
     background-color: rgb(238, 226, 240);
     box-shadow: inset rgba(26, 26, 26, 0.527) 0px 8px 24px;
     border-bottom-left-radius: 1rem;
@@ -74,6 +74,7 @@
     border: 2px dashed rgb(66, 24, 94);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 0.5rem;
+    position: relative;
 }
 
 #todo-input {
@@ -118,12 +119,57 @@
     font-weight: 600;
     font-size: 1.1rem;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    position: absolute;
+    right: 1rem;
 }
 
 #del:hover {
     background-color: rgb(151, 19, 2);
     cursor: pointer;
     transition: 400ms ease-in;
+}
+
+#edit{
+    background-color: rgb(18, 154, 233);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    right: 3.5rem;
+}
+
+#edit:hover {
+    background-color: rgb(16, 108, 161);
+    cursor: pointer;
+    transition: 400ms ease-in;
+}
+
+#edit-none{
+    display: none;
+}
+
+#save{
+    background-color: rgb(128, 206, 39);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    right: 3.5rem;
+    font-weight: 600;
+}
+
+#save:hover {
+    background-color: rgb(93, 161, 16);
+    cursor: pointer;
+    transition: 400ms ease-in;
+}
+
+#save-none{
+    display: none;
 }
 
 #add {
