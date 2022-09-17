@@ -5,6 +5,8 @@ const todoList = document.querySelector('#todo-list')
 const liContainer = document.querySelector('.list-container-dnone')
 const planCount = document.querySelector('#count')
 
+let newText = null
+
 //Element Creations
 const todoItem = document.createElement('li')
 todoItem.setAttribute('id', 'todo-item')
@@ -18,7 +20,7 @@ todoEdit.innerText = 'E'
 todoEdit.setAttribute('id', 'edit')
 
 const editInput = document.createElement('input')
-editInput.setAttribute('id', 'edit-input-none')
+editInput.setAttribute('class', 'edit-input-none')
 editInput.setAttribute('type', 'text')
 
 const todoSave = document.createElement('button')
@@ -34,7 +36,6 @@ planCount.innerText = 'Plans For Today: 0'
 
 const createTodoItem = () => {
     liContainer.setAttribute('class', 'list-container')
-    console.log(todoList.parentNode)
     todoList.appendChild(todoItem)
     todoItem.appendChild(todoText)
     todoItem.appendChild(editInput)
@@ -61,7 +62,7 @@ const bindHandler = () => {
     saveButton.forEach((save) => {
         save.addEventListener('click', saveButtonHandler)
     })
-    const isEditable = document.querySelectorAll('#edit-input-none')
+    const isEditable = document.querySelectorAll('.edit-input-none')
     isEditable.forEach((editable) => {
         editable.addEventListener('keydown', textChange)
     })
@@ -77,27 +78,30 @@ const editButtonHandler = (e) => {
     e.target.previousSibling.setAttribute('id', 'save')
     e.target.setAttribute('id', 'el-none')
     e.target.parentNode.firstChild.setAttribute('id','el-none')
-    e.target.previousSibling.previousSibling.setAttribute('id','edit-input')
-    document.querySelector('#edit-input').value = todoText.innerText
+    e.target.previousSibling.previousSibling.setAttribute('class','edit-input')
+    newText  = e.target.parentNode.firstChild.innerText
+    console.log(newText)
+    document.querySelector('.edit-input').value = newText
 }
 
 const textChange = () => {
-    let newValue = document.querySelector('#edit-input').value.toUpperCase()
+    let newValue = document.querySelector('.edit-input').value.toUpperCase()
     todoText.innerText = newValue
 }
 
 const saveButtonHandler = (e) => {
     textChange()
     e.target.parentNode.firstChild.innerText = todoText.innerText
-    e.target.parentNode.firstChild.setAttribute('id', 'el-none')
+    e.target.parentNode.firstChild.setAttribute('class', 'edit-input-none')
+    e.target.parentNode.firstChild.setAttribute('id', 'todo-item-text')
     e.target.setAttribute('id', 'save-none')
-    e.target.previousSibling.previousSibling.setAttribute('id','todo-item-text')
-    e.target.parentNode.firstChild.nextSibling.setAttribute('id','save-none')
+    e.target.previousSibling.previousSibling.setAttribute('class','todo-item-text')
+    e.target.parentNode.firstChild.nextSibling.setAttribute('class','edit-input-none')
     e.target.nextSibling.setAttribute('id', 'edit')
 }
 
 const enterButtonHandler = (e) => {
-    e.key ==='Enter' 
+    e.code ==='Enter' || e.code === 'NumpadEnter'
     ? addButtonHandler()
     : null
 }

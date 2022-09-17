@@ -176,15 +176,23 @@
   display: none;
 }
 
+#text-none{
+  display: none;
+}
+
 #save-none {
   display: none;
 }
 
-#edit-input-none {
+#edit-none {
   display: none;
 }
 
-#edit-input {
+.edit-input-none {
+  display: none;
+}
+
+.edit-input {
   background-color: rgb(174, 121, 207);
   height: 2rem;
   width: 15rem;
@@ -266,7 +274,7 @@
     height: 1rem;
     padding: 1.5rem;
   }
-  #edit-input {
+  .edit-input {
     width: 7rem;
     height: 0.2rem;
     padding: 0.8rem;
