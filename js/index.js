@@ -112,7 +112,7 @@ const removeButtonHandler = (e) => {
         e.target.parentNode.remove()
         setListContainer()
         setPlanCount()
-    },1000)
+    },300)
 }
 
 const errorThrowHandler = () => {
