@@ -5,6 +5,8 @@ const todoList = document.querySelector('#todo-list')
 const liContainer = document.querySelector('.list-container-dnone')
 const planCount = document.querySelector('#count')
 
+let initialValue = null
+let initialIndex = null
 let newText = null
 let todos= []
 
@@ -37,7 +39,7 @@ planCount.innerText = 'Plans For Today: 0'
 
 const createTodoItem = (todo) => {
     todos.push(todo)
-    console.log(todos)
+    initialValue = todo
     localStorage.setItem('todos', JSON.stringify(todos))
     liContainer.setAttribute('class', 'list-container')
     todoList.appendChild(todoItem)
@@ -46,9 +48,11 @@ const createTodoItem = (todo) => {
     todoItem.appendChild(todoSave)
     todoItem.appendChild(todoEdit)
     todoItem.appendChild(todoRemove)
-    todos.map(todo => (
-      todoText.innerText = todo.toUpperCase()
-  ))
+    todos.map((todo, index) => (
+      todoText.innerText = todo,
+      initialValue = todo,
+      initialIndex = index
+    ))
     setPlanCount()
     todoList.innerHTML += ''
     todoInput.value = ''
@@ -80,6 +84,7 @@ const addButtonHandler = (e) => {
     : errorThrowHandler()
 }
 
+
 const editButtonHandler = (e) => {
     e.target.previousSibling.setAttribute('id', 'save')
     e.target.setAttribute('id', 'el-none')
@@ -89,24 +94,16 @@ const editButtonHandler = (e) => {
     document.querySelector('.edit-input').value = newText
 }
 
+
 const textChange = () => {
     let newValue = document.querySelector('.edit-input').value.toUpperCase()
     todoText.innerText = newValue
 }
 
-const changeValueLocalStorage = (value) => {
-  const changedIndex = todos.indexOf(value)
-  todos.splice(changedIndex, 1)
-  ? todos.push(value)
-  : null
-  localStorage.setItem('todos', JSON.stringify(todos))
-  console.log(todos)
-}
-
 const saveButtonHandler = (e) => {
     textChange()
+   
     e.target.parentNode.firstChild.innerText = todoText.innerText
-    changeValueLocalStorage(todoText.innerText.toUpperCase())
     e.target.parentNode.firstChild.setAttribute('class', 'edit-input-none')
     e.target.parentNode.firstChild.setAttribute('id', 'todo-item-text')
     e.target.setAttribute('id', 'save-none')
@@ -127,6 +124,8 @@ const removeButtonHandler = (e) => {
         e.target.parentNode.remove()
         setListContainer()
         setPlanCount()
+        todos.splice(e.target.index, 1);
+        localStorage.setItem('todos', JSON.stringify(todos));
     },300)
 }
 
@@ -152,7 +151,10 @@ const setPlanCount = () => {
 addButton.addEventListener('click', addButtonHandler)
 document.addEventListener('keydown', enterButtonHandler)
 document.addEventListener('DOMContentLoaded', () => {
-  
+  const localData = JSON.parse(localStorage.getItem('todos'))
+  localData.map((todo) => (
+    createTodoItem(todo)
+  ))
 })
 
 //Background
